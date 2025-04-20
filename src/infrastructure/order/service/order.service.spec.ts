@@ -84,6 +84,9 @@ describe("Order service integration test", () => {
     // Save order to database
     await orderRepository.create(order);
 
+    // Update customer in database with new reward points
+    await customerRepository.update(customer);
+
     // Verify order was created correctly
     const foundOrder = await orderRepository.find(order.id);
     

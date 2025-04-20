@@ -50,6 +50,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
     }
 
     const customer = new Customer(id, customerModel.name);
+    customer.addRewardPoints(customerModel.rewardPoints);
     const address = new Address(
       customerModel.street,
       customerModel.number,
@@ -57,6 +58,9 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
       customerModel.city
     );
     customer.changeAddress(address);
+    if (customerModel.active) {
+      customer.activate();
+    }
     return customer;
   }
 
